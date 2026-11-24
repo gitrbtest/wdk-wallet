@@ -104,6 +104,7 @@ export namespace IdentityErrorReason {
     let ACCOUNT_LIMIT_REACHED: string;
     let INVALID_REQUEST: string;
     let CANNOT_PROVE: string;
+    let CHAIN_ERROR: string;
 }
 /**
  * Thrown when an operation requires an account to be set.

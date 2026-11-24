@@ -120,6 +120,13 @@ describe('IdentityManager', () => {
 })
 
 describe('IdentityError', () => {
+  test('should offer every reason a chain-neutral identity operation can fail with', () => {
+    expect(Object.keys(IdentityErrorReason)).toEqual([
+      'PROVIDER_ERROR', 'VERIFICATION_REJECTED', 'IDENTITY_NOT_FOUND', 'IDENTITY_EXPIRED', 'ACCOUNT_LIMIT_REACHED',
+      'INVALID_REQUEST', 'CANNOT_PROVE', 'CHAIN_ERROR'
+    ])
+  })
+
   test('should carry its name and reason', () => {
     const error = new IdentityError('The provider refused the identity.', { reason: IdentityErrorReason.VERIFICATION_REJECTED })
 

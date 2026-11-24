@@ -282,7 +282,13 @@ export const IdentityErrorReason = {
   /**
    * Thrown when the identity cannot prove what the request asks (e.g., the user is younger than asked).
    */
-  CANNOT_PROVE: 'CANNOT_PROVE'
+  CANNOT_PROVE: 'CANNOT_PROVE',
+
+  /**
+   * Thrown when the chain refused or did not confirm the operation (e.g., creating an account), or could not be
+   * reached. Often worth trying again.
+   */
+  CHAIN_ERROR: 'CHAIN_ERROR'
 }
 
 /**
