@@ -87,6 +87,9 @@
 /** @typedef {import('./sda-protocol.js').SdaRecoveryOptions} SdaRecoveryOptions */
 /** @typedef {import('./sda-protocol.js').SdaRecoveryResult} SdaRecoveryResult */
 
+/** @typedef {import('./identity-protocol.js').ProofRequestAsk} ProofRequestAsk */
+/** @typedef {import('./identity-protocol.js').ProofRequestDescription} ProofRequestDescription */
+
 /** @typedef {import('./errors.js').SwapErrorOptions} SwapErrorOptions */
 /** @typedef {import('./errors.js').BridgeErrorOptions} BridgeErrorOptions */
 /** @typedef {import('./errors.js').SupplyErrorOptions} SupplyErrorOptions */
@@ -97,6 +100,7 @@
 /** @typedef {import('./errors.js').SellErrorOptions} SellErrorOptions */
 /** @typedef {import('./errors.js').SwidgeErrorOptions} SwidgeErrorOptions */
 /** @typedef {import('./errors.js').SdaErrorOptions} SdaErrorOptions */
+/** @typedef {import('./errors.js').IdentityErrorOptions} IdentityErrorOptions */
 
 export { default as SwapProtocol, ISwapProtocol } from './swap-protocol.js'
 
@@ -110,4 +114,6 @@ export { default as SwidgeProtocol, ISwidgeProtocol } from './swidge-protocol.js
 
 export { default as SdaProtocol, ISdaProtocol } from './sda-protocol.js'
 
-export { AccountRequiredError, BorrowError, BorrowErrorReason, BridgeError, BridgeErrorReason, BuyError, BuyErrorReason, DisposalError, InvalidTokenError, MaximumFeeExceededError, NoSuchElementError, NotImplementedError, ProviderError, ProviderRequiredError, ReadOnlyAccountRequiredError, RepayError, RepayErrorReason, SdaError, SdaErrorReason, SellError, SellErrorReason, SupplyError, SupplyErrorReason, SwapError, SwapErrorReason, SwidgeError, SwidgeErrorReason, UnsupportedOperationError, ValueError, WdkError, WithdrawError, WithdrawErrorReason } from './errors.js'
+export { default as IdentityProtocol, IIdentityProtocol } from './identity-protocol.js'
+
+export { AccountRequiredError, BorrowError, BorrowErrorReason, BridgeError, BridgeErrorReason, BuyError, BuyErrorReason, DisposalError, IdentityError, IdentityErrorReason, InvalidTokenError, MaximumFeeExceededError, NoSuchElementError, NotImplementedError, ProviderError, ProviderRequiredError, ReadOnlyAccountRequiredError, RepayError, RepayErrorReason, SdaError, SdaErrorReason, SellError, SellErrorReason, SupplyError, SupplyErrorReason, SwapError, SwapErrorReason, SwidgeError, SwidgeErrorReason, UnsupportedOperationError, ValueError, WdkError, WithdrawError, WithdrawErrorReason } from './errors.js'

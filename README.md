@@ -29,6 +29,9 @@ This module is for internal use only. If you want to build a wallet, use one of 
 - **WalletAccount** - Base class for wallet accounts
 - **WalletAccountReadOnly** - Base class for read-only accounts
 - **IWalletAccount** - Interface that all accounts must follow
+- **IdentityManager** (`@tetherto/wdk-wallet/identity`) - Base class for a chain's identity manager: verify the
+  user's identity with an identity provider, create accounts from it, and find both again from the seed
+- **IdentityProtocol** (`@tetherto/wdk-wallet/protocols`) - Base class for proving facts to websites from an account
 
 ## Learn More
 

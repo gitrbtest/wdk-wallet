@@ -93,6 +93,19 @@ export namespace SdaErrorReason {
     let ROUTE_NOT_SUPPORTED: string;
 }
 /**
+ * Enum for identity error reasons.
+ */
+export type IdentityErrorReason = string;
+export namespace IdentityErrorReason {
+    let PROVIDER_ERROR: string;
+    let VERIFICATION_REJECTED: string;
+    let IDENTITY_NOT_FOUND: string;
+    let IDENTITY_EXPIRED: string;
+    let ACCOUNT_LIMIT_REACHED: string;
+    let INVALID_REQUEST: string;
+    let CANNOT_PROVE: string;
+}
+/**
  * Thrown when an operation requires an account to be set.
  */
 export class AccountRequiredError extends WdkError {
@@ -294,6 +307,24 @@ export class SdaError extends WdkError {
      */
     reason: string;
 }
+/**
+ * Thrown when an identity operation fails with an error.
+ */
+export class IdentityError extends WdkError {
+    /**
+     * Creates a new identity error.
+     *
+     * @param {string} message - The error's message.
+     * @param {IdentityErrorOptions & ErrorOptions} options - The error's options.
+     */
+    constructor(message: string, options: IdentityErrorOptions & ErrorOptions);
+    /**
+     * The error's reason.
+     *
+     * @type {string}
+     */
+    reason: string;
+}
 export type SwapErrorOptions = {
     /**
      * - The error's reason.
@@ -353,6 +384,12 @@ export type SdaErrorOptions = {
      * - The error's reason.
      */
     reason: SdaErrorReason;
+};
+export type IdentityErrorOptions = {
+    /**
+     * - The error's reason.
+     */
+    reason: IdentityErrorReason;
 };
 import { DisposalError } from '../errors.js';
 import { InvalidTokenError } from '../errors.js';

@@ -68,6 +68,11 @@ export { DisposalError, InvalidTokenError, MaximumFeeExceededError, NoSuchElemen
  */
 
 /**
+ * @typedef {Object} IdentityErrorOptions
+ * @property {IdentityErrorReason} reason - The error's reason.
+ */
+
+/**
  * Enum for swap error reasons.
  *
  * @readonly
@@ -235,6 +240,49 @@ export const SdaErrorReason = {
    * Thrown when the protocol doesn't support the given route.
    */
   ROUTE_NOT_SUPPORTED: 'ROUTE_NOT_SUPPORTED'
+}
+
+/**
+ * Enum for identity error reasons.
+ *
+ * @readonly
+ * @enum {string}
+ */
+export const IdentityErrorReason = {
+  /**
+   * Thrown when the identity provider reports an error, or cannot be used.
+   */
+  PROVIDER_ERROR: 'PROVIDER_ERROR',
+
+  /**
+   * Thrown when the identity provider refused to issue the identity.
+   */
+  VERIFICATION_REJECTED: 'VERIFICATION_REJECTED',
+
+  /**
+   * Thrown when the identity is not held by the identity manager, or does not belong to its seed.
+   */
+  IDENTITY_NOT_FOUND: 'IDENTITY_NOT_FOUND',
+
+  /**
+   * Thrown when the identity is no longer valid.
+   */
+  IDENTITY_EXPIRED: 'IDENTITY_EXPIRED',
+
+  /**
+   * Thrown when the identity has no accounts left to create.
+   */
+  ACCOUNT_LIMIT_REACHED: 'ACCOUNT_LIMIT_REACHED',
+
+  /**
+   * Thrown when a website's proof request is not valid.
+   */
+  INVALID_REQUEST: 'INVALID_REQUEST',
+
+  /**
+   * Thrown when the identity cannot prove what the request asks (e.g., the user is younger than asked).
+   */
+  CANNOT_PROVE: 'CANNOT_PROVE'
 }
 
 /**
@@ -499,6 +547,30 @@ export class SdaError extends WdkError {
     super(message, options)
 
     this.name = 'SdaError'
+
+    /**
+     * The error's reason.
+     *
+     * @type {string}
+     */
+    this.reason = options.reason
+  }
+}
+
+/**
+ * Thrown when an identity operation fails with an error.
+ */
+export class IdentityError extends WdkError {
+  /**
+   * Creates a new identity error.
+   *
+   * @param {string} message - The error's message.
+   * @param {IdentityErrorOptions & ErrorOptions} options - The error's options.
+   */
+  constructor (message, options) {
+    super(message, options)
+
+    this.name = 'IdentityError'
 
     /**
      * The error's reason.

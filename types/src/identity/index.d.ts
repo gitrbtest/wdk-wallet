@@ -1,0 +1,13 @@
+export type IdentityConfig = import("./identity-manager.js").IdentityConfig;
+export type IdentityProvider = import("./identity-manager.js").IdentityProvider;
+export type IdentityReference = import("./identity-manager.js").IdentityReference;
+export type IdentityAccount = import("./identity-manager.js").IdentityAccount;
+export type IdentitySummary = import("./identity-manager.js").IdentitySummary;
+export type StartVerificationOptions = import("./identity-manager.js").StartVerificationOptions;
+export type VerificationStart = import("./identity-manager.js").VerificationStart;
+export type CreateAccountOptions = import("./identity-manager.js").CreateAccountOptions;
+export type ProofRequest = import("./identity-manager.js").ProofRequest;
+export type Presentation = import("./identity-manager.js").Presentation;
+export type IdentityErrorOptions = import("../protocols/errors.js").IdentityErrorOptions;
+export { default, IIdentityManager } from "./identity-manager.js";
+export { IdentityError, IdentityErrorReason } from "../protocols/errors.js";
