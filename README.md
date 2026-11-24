@@ -33,6 +33,9 @@ This module is for internal use only. If you want to build a wallet, use one of 
   user's identity with an identity provider, create accounts from it, and find both again from the seed
 - **IdentityProtocol** (`@tetherto/wdk-wallet/protocols`) - Base class for proving facts to websites from an account
 
+The two identity classes are a proposal, explained in
+[the WDK fork's proposal document](https://github.com/gitrbtest/wdk/blob/feature/identity/docs/proposals/identity.md).
+
 ## Learn More
 
 For general WDK documentation, visit [docs.wdk.tether.io](https://docs.wdk.tether.io/)
