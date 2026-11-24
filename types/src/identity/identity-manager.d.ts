@@ -62,7 +62,7 @@
  * @typedef {Object<string, any>} Presentation
  */
 /** @interface */
-export class IIdentityManager {
+export interface IIdentityManager {
     /**
      * Returns the identity providers the user can verify with.
      *
@@ -152,7 +152,7 @@ export class IIdentityManager {
  * @abstract
  * @implements {IIdentityManager}
  */
-export default class IdentityManager implements IIdentityManager {
+export default abstract class IdentityManager implements IIdentityManager {
     /**
      * Creates a new identity manager.
      *
@@ -200,7 +200,7 @@ export default class IdentityManager implements IIdentityManager {
      * @returns {Promise<IdentityProvider[]>} The identity providers.
      * @throws {ProviderError} If the list of providers cannot be read.
      */
-    getProviders(): Promise<IdentityProvider[]>;
+    abstract getProviders(): Promise<IdentityProvider[]>;
     /**
      * Starts the verification of a new identity with a provider.
      *
@@ -211,7 +211,7 @@ export default class IdentityManager implements IIdentityManager {
      * @throws {ValueError} If the options are not valid.
      * @throws {IdentityError} If the provider cannot be used.
      */
-    startVerification(options: StartVerificationOptions): Promise<VerificationStart>;
+    abstract startVerification(options: StartVerificationOptions): Promise<VerificationStart>;
     /**
      * Collects an identity once the provider has verified the user.
      *
@@ -222,7 +222,7 @@ export default class IdentityManager implements IIdentityManager {
      * @throws {DisposalError} If the identity manager has been disposed.
      * @throws {IdentityError} If the provider refused the identity, or the reply is not for this identity.
      */
-    completeVerification(identity: IdentityReference, reply: string): Promise<IdentitySummary>;
+    abstract completeVerification(identity: IdentityReference, reply: string): Promise<IdentitySummary>;
     /**
      * Finds the user's identities and their accounts again from the seed alone (e.g., on a new device).
      *
@@ -231,7 +231,7 @@ export default class IdentityManager implements IIdentityManager {
      * @throws {DisposalError} If the identity manager has been disposed.
      * @throws {ProviderError} If a provider or the chain cannot be reached.
      */
-    recover(): Promise<IdentitySummary[]>;
+    abstract recover(): Promise<IdentitySummary[]>;
     /**
      * Creates an account from an identity.
      *
@@ -242,7 +242,7 @@ export default class IdentityManager implements IIdentityManager {
      * @throws {DisposalError} If the identity manager has been disposed.
      * @throws {IdentityError} If the identity is not held, has expired, or has no accounts left.
      */
-    createAccount(identity: IdentityReference, options?: CreateAccountOptions): Promise<IdentityAccount>;
+    abstract createAccount(identity: IdentityReference, options?: CreateAccountOptions): Promise<IdentityAccount>;
     /**
      * Exports an identity, for the wallet to keep in its own secure storage. The result is sensitive: keep it like the
      * seed phrase.
@@ -253,7 +253,7 @@ export default class IdentityManager implements IIdentityManager {
      * @throws {DisposalError} If the identity manager has been disposed.
      * @throws {IdentityError} If the identity is not held.
      */
-    exportIdentity(identity: IdentityReference): Promise<string>;
+    abstract exportIdentity(identity: IdentityReference): Promise<string>;
     /**
      * Imports an identity exported earlier, after checking it belongs to this seed.
      *
@@ -263,7 +263,7 @@ export default class IdentityManager implements IIdentityManager {
      * @throws {DisposalError} If the identity manager has been disposed.
      * @throws {IdentityError} If the export cannot be read or does not belong to this seed.
      */
-    importIdentity(exported: string): Promise<IdentitySummary>;
+    abstract importIdentity(exported: string): Promise<IdentitySummary>;
     /**
      * Proves facts to a website from the identity itself, without naming an account (where the chain allows it).
      *
@@ -274,7 +274,7 @@ export default class IdentityManager implements IIdentityManager {
      * @throws {DisposalError} If the identity manager has been disposed.
      * @throws {IdentityError} If the request is not valid, or the identity cannot prove it.
      */
-    prove(identity: IdentityReference, request: ProofRequest): Promise<Presentation>;
+    abstract prove(identity: IdentityReference, request: ProofRequest): Promise<Presentation>;
     /**
      * Disposes the identity manager, erasing its copy of the seed from memory. Subclasses that hold identities erase
      * them too, and call `super.dispose()`.

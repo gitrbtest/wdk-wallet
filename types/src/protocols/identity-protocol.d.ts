@@ -23,7 +23,7 @@
  * @property {ProofRequestAsk[]} asks - What is asked.
  */
 /** @interface */
-export class IIdentityProtocol {
+export interface IIdentityProtocol {
     /**
      * Describes a website's request for the user's consent, without answering it.
      *
@@ -52,7 +52,7 @@ export class IIdentityProtocol {
  * @abstract
  * @implements {IIdentityProtocol}
  */
-export default class IdentityProtocol implements IIdentityProtocol {
+export default abstract class IdentityProtocol implements IIdentityProtocol {
     /**
      * Creates a new read-only identity protocol (it can describe requests, not prove).
      *
@@ -91,7 +91,7 @@ export default class IdentityProtocol implements IIdentityProtocol {
      * @returns {Promise<ProofRequestDescription>} The request's description.
      * @throws {IdentityError} If the request is not valid.
      */
-    describeRequest(request: ProofRequest): Promise<ProofRequestDescription>;
+    abstract describeRequest(request: ProofRequest): Promise<ProofRequestDescription>;
     /**
      * Proves facts to a website from this account (the answer names the account).
      *
@@ -102,7 +102,7 @@ export default class IdentityProtocol implements IIdentityProtocol {
      * @throws {DisposalError} If the account or the identity manager has been disposed.
      * @throws {IdentityError} If the request is not valid, or the account's identity cannot prove it.
      */
-    prove(request: ProofRequest): Promise<Presentation>;
+    abstract prove(request: ProofRequest): Promise<Presentation>;
 }
 export type IWalletAccountReadOnly = import("../wallet-account-read-only.js").IWalletAccountReadOnly;
 export type IWalletAccount = import("../wallet-account.js").IWalletAccount;
